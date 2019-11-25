@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+<link href="main.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/heatmap.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/highcharts-more.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/modules/export-data.js"></script>
+	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+	<div id="wrapper">
+		<table align="center" width="400">
+		  <tbody>
+			<tr>
+			  <td align="center"><img src="tom-kenny.jpg" width="100" height="100" alt=""/></td>
+			  <td><h1 align="center">Tom Kenny's Acting Work</h1></td>
+			</tr>
+		  </tbody>
+		</table>
+
+		<div id="container" style="height: 450px; min-width: 310px; max-width: 800px; margin: 0 auto"></div>
+		<p class="center">"The Spongebob Squarepants Movie" International Box Office</p>
+
+		<img class="center" src="WorldGraph.png" width="600" height="371" alt=""/>
+		
+		<div id="container2" style="height: 400px; min-width: 310px; max-width: 800px; margin: 0 auto"></div>
+	</div>
+<script>
+		Highcharts.chart('container', {
+
+			chart: {
+				type: 'heatmap',
+				marginTop: 40,
+				marginBottom: 80,
+				plotBorderWidth: 1
+			},
+
+
+			title: {
+				text: "Tom Kenny's Movie/TV Show Ratings Every Five Years"
+			},
+
+			xAxis: {
+				categories: ['1-2', '2-3', '3-4', '4-5', '5-6', '6-7', '7-8', '8-9', '9-10'],
+				title: {
+					text: "IMDb Ratings"
+				}
+			},
+
+			yAxis: {
+				categories: ['2015-2019', '2010-2014', '2005-2009', '2000-2004', '1995-1999', '1990-1994', '1985-1989', '1980-1984'],
+				title: {
+					text: "Years"
+				},
+				reversed: true
+			},
+
+			colorAxis: {
+				min: 0,
+				minColor: '#FFFFFF',
+				maxColor: Highcharts.getOptions().colors[6]
+			},
+
+			legend: {
+				align: 'right',
+				layout: 'vertical',
+				margin: 0,
+				verticalAlign: 'top',
+				y: 25,
+				symbolHeight: 280
+			},
+			tooltip: {
+				formatter: function () {
+					return 'Tom Kenny had <b>' + 
+						this.point.value + '</b> movies and TV shows in <br><b>' + this.series.yAxis.categories[this.point.y] + ' </b> scoring <br><b>' + this.series.xAxis.categories[this.point.x] + '</b> on IMDb';
+				}
+			},
+
+			series: [{
+				borderWidth: 1,
+				data: [[0, 0, 0], [0, 1, 1], [0, 2, 3], [0, 3, 0], [0, 4, 0], [0, 5, 0], [0, 6, 0], [0, 7, 0], [1, 0, 2], [1, 1, 3], [1, 2, 3], [1, 3, 0], [1, 4, 2], [1, 5, 0], [1, 6, 0], [1, 7, 0], [2, 0, 3], [2, 1, 3], [2, 2, 2], [2, 3, 0], [2, 4, 0], [2, 5, 1], [2, 6, 0], [2, 7, 0], [3, 0, 4], [3, 1, 14], [3, 2, 8], [3, 3, 2], [3, 4, 2], [3, 5, 1], [3, 6, 1], [3, 7, 0], [4, 0, 21], [4, 1, 19], [4, 2, 20], [4, 3, 13], [4, 4, 4], [4, 5, 2], [4, 6, 1], [4, 7, 0], [5, 0, 31], [5, 1, 36], [5, 2, 43], [5, 3, 39], [5, 4, 17], [5, 5, 1], [5, 6, 0], [5, 7, 0], [6, 0, 23], [6, 1, 42], [6, 2, 37], [6, 3, 42], [6, 4, 24], [6, 5, 5], [6, 6, 1], [6, 7, 3], [7, 0, 14], [7, 1, 15], [7, 2, 11], [7, 3, 15], [7, 4, 21], [7, 5, 1], [7, 6, 0], [7, 7, 1], [8, 0, 0], [8, 1, 1], [8, 2, 2], [8, 3, 2], [8, 4, 0], [8, 5, 0], [8, 6, 0], [8, 7, 0]],
+				dataLabels: {
+					enabled: true,
+					color: '#000000'
+				}
+			}],
+
+			responsive: {
+				rules: [{
+					condition: {
+						maxWidth: 500
+					},
+					chartOptions: {
+						yAxis: {
+							labels: {
+								formatter: function () {
+									return this.value.charAt(0);
+								}
+							}
+						}
+					}
+				}]
+			}
+
+		});
+		
+		Highcharts.chart('container2', {
+
+			chart: {
+				type: 'bubble',
+				plotBorderWidth: 1,
+				zoomType: 'xy'
+			},
+
+			legend: {
+				enabled: false
+			},
+
+			title: {
+				text: 'How Well did the Spongebob Movie do Internationally?'
+			},
+
+			subtitle: {
+				text: 'Worldwide Premieres and Box Office Totals Monthly'
+			},
+
+			xAxis: {
+				gridLineWidth: 1,
+				title: {
+					text: 'Month'
+				},
+				categories: ['October 2004', 'Nov 2004', 'Dec 2004', 'Jan 2005', 'Feb 2005', 'Mar 2005', 'Apr 2005', 'May 2005', 'June 2005', 'July 2005', 'August 2005', 'September 2005']
+			},
+
+			yAxis: {
+				startOnTick: true,
+				endOnTick: true,
+				title: {
+					text: 'Number of Releases'
+				},
+				labels: {
+					format: '{value}'
+				}
+			},
+
+			tooltip: {
+				useHTML: true,
+				headerFormat: '<table>',
+				pointFormat: '<tr><th colspan="2"><h3>{point.country}</h3></th></tr>' +
+					'<tr><th>Number of Opening Premieres:</th><td>{point.y}</td></tr>' +
+					'<tr><th>Box Office Earnings: $</th><td>{point.z}</td></tr>',
+				footerFormat: '</table>',
+				followPointer: true
+			},
+
+			plotOptions: {
+				series: {
+					dataLabels: {
+						enabled: true,
+						format: '{point.name}'
+					}
+				}
+			},
+
+			series: [{
+				data: [
+					{ x: 1, y: 1, z: 85417988, name: 'Nov', country: 'November', color: 'yellow' },
+					{ x: 2, y: 6, z: 11864134, name: 'Dec', country: 'December', color: 'yellow' },
+					{ x: 3, y: 7, z: 10289436, name: 'Jan', country: 'January', color: 'yellow' },
+					{ x: 4, y: 7, z: 19845531, name: 'Feb', country: 'February', color: 'yellow' },
+					{ x: 5, y: 3, z: 1451719, name: 'Mar', country: 'March', color: 'yellow' },
+					{ x: 6, y: 6, z: 1471473, name: 'Apr', country: 'April', color: 'yellow' },
+					{ x: 7, y: 1, z: 447529, name: 'May', country: 'May', color: 'yellow' },
+					{ x: 8, y: 3, z: 191748, name: 'Jun', country: 'June', color: 'yellow' },
+					{ x: 11, y: 3, z: 1981824, name: 'Sep', country: 'July', color: 'yellow' }
+				]
+			}]
+
+		});
+	</script>
+</body>
+</html>
